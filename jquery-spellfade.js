@@ -8,8 +8,6 @@ $.fn.spellFadeIn = function (duration, letterduration){
   return this.each(function(){
     if ($(this).children("[id*='__spellfade']").length > 0){ return } // block, if spellfade is still in motion
     var html = $(this).html();
-    console.log("In");
-    console.log(html);
     var duration_per_letter = settings.duration / html.length;
     $(this).html("");
     $(this).fadeIn(0);
@@ -36,8 +34,6 @@ $.fn.spellFadeOut = function (duration, letterduration){
   return this.each(function(){
     if ($(this).children("[id*='__spellfade']").length > 0){ return } // block, if spellfade is still in motion
     var html = $(this).html();
-    console.log("OUT");
-    console.log(html);
     var newhtml = ""
     for (var i=0; i<html.length;i++){
         newhtml += "<span id=\"__spellfade" + i + "__\">" + html.charAt(i) + "</span>";
@@ -48,7 +44,6 @@ $.fn.spellFadeOut = function (duration, letterduration){
         var letterdelay = settings.duration - i * duration_per_letter;
         $("#__spellfade" + i + "__").delay(letterdelay).fadeOut(settings.letterduration);
     }
-    console.log("breakpoint");
     var element = $(this);
     setTimeout( function () { element.css("display", "none"); element.html(html);}, settings.duration);
   });
